@@ -151,8 +151,7 @@ document.getElementById("nextButton").onclick = function () {
     showStep(currentStep);
   } else {
     // Finalizar el onboarding
-    document.getElementById("onboardingPanel").style.display = "none";
-    document.getElementById("inst").style.display = "block"; // Mostrar el icono "?"
+    window.location.href = "cargar.html?destino=lobby.html";
   }
 };
 
@@ -166,8 +165,7 @@ document.getElementById("prevButton").onclick = function () {
 
 // Cerrar el panel con el botón "Saltear"
 document.getElementById("skipButton").onclick = function () {
-  document.getElementById("onboardingPanel").style.display = "none";
-  document.getElementById("inst").style.display = "block"; // Mostrar el icono "?" al saltar el onboarding
+  window.location.href = "cargar.html?lobby.html";
 };
 
 // Inicializar el icono "?" como oculto y mostrar el primer paso
