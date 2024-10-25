@@ -1,0 +1,409 @@
+/*GENERALES*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+  font-family: "Helvetica", Arial, sans-serif;
+}
+
+main {
+  overflow: hidden;
+}
+
+footer {
+  position: absolute;
+  display: flex;
+  justify-content: space-between !important; /* Espacio entre elementos */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-x: hidden !important;
+  padding: 10px !important; /* Espacio dentro del footer */
+}
+
+.button {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 20px;
+    min-width: 200px;
+    min-height: 50px;
+    margin-top: 30px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: white !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    text-decoration: none;
+    text-align: center;
+    float: right;
+    overflow: hidden !important;
+    transition: background 0.3s ease !important; /* Smooth transition */
+}
+
+.button:hover {
+  background: url('imagenes/fondo_boton.png');
+  background-size: cover; /* Ensures the image covers the button */
+  color: #f2f2f2; /* Cambia el color del texto en hover */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
+}
+
+.button a:hover {
+  background: url('imagenes/fondo_boton.png') no-repeat center center;
+  color: #f2f2f2; /* Asegúrate de que el color del texto cambie también */
+}
+
+/*Formato de listado de instrucciones*/
+
+ul {
+  padding-left: 100px;    /* Agrega padding a la izquierda */
+  margin: 20px; 
+  float: center;
+  overflow: hidden;
+}
+
+ul li {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+/* Estilo para las listas ordenadas */
+ol {
+  list-style-type: none; /* Elimina los puntos de viñeta */
+  padding-left: 100px;       /* Quita el padding a la izquierda */
+  padding-bottom: 60px;
+  margin-left: 60px; /* Eliminar margen izquierdo por defecto */
+  text-align: left;
+}
+
+ol li{
+  padding-left: 50px;       /* Quita el padding a la izquierda */
+
+}
+
+.titulo {
+  font-weight: bold;      /* Hace los títulos más destacados */
+  margin-top: 10px;      /* Espacio entre cada título */
+  font-size: 1.2em;       /* Aumenta el tamaño de la fuente */
+  font-family: Helvetica, Arial, Geneva, sans serif;
+}
+
+.resaltar {
+  font-weight: 600;
+  background-color: black; /* Cambia el color de fondo */
+  padding: 2px 4px; /* Espacio alrededor del texto */
+  height: 5%;
+  line-height: 1.2;
+  vertical-align: middle;
+  margin: 2px;
+  border-radius: 3px; /* Bordes redondeados */
+  border: 2px solid #717171;
+  display: inline-block; /* Para que el elemento se comporte como bloque y pueda tener ancho/alto */
+}
+
+/* The Overlay (background) */
+.overlay {
+  height: 100%;
+  width: 0; /* Comienza con ancho 0 */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/opacity */
+  overflow: hidden;
+  transition: width 0.5s ease, opacity 0.5s ease; /* Efecto de transición */
+  opacity: 0; /* Comienza oculto */
+}
+
+/* Show the overlay */
+.overlay.show {
+  width: 100%; /* Ocupa todo el ancho cuando está visible */
+  opacity: 1; /* Totalmente visible */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 10%; /* 25% from the top */
+  width: 90%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  align-items: center;
+  margin-top: 10px; /* top margin to avoid conflict with the close button on smaller screens */
+  margin-left: 55px;
+  color:#f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  color: rgb(146, 146, 146);
+}
+
+.overlay .closebtn:hover {
+  color: white;
+}
+
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {
+      font-size: 20px;
+  }
+  .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+  }
+}
+
+.inst {
+  position: fixed; /* Permite que el botón flote */
+  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+}
+
+.inst span {
+  display: flex; /* Cambiar a flexbox para centrar el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 50px; /* Ajusta el tamaño del círculo */
+  height: 50px; /* Ajusta el tamaño del círculo */
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo */
+  color: white; /* Color del texto */
+  border-radius: 50%; /* Hace que sea un círculo */
+  border: none !important;
+  text-align: center !important; /* Centra el texto */
+  line-height: 50px; /* Centra el texto verticalmente */
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: background-color 0.3s; /* Transición suave al cambiar de color */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.inst span:hover {
+  background: url('imagenes/fondo_boton.png');
+  background-size: cover; /* Ensures the image covers the button */
+  color: #f2f2f2; /* Cambia el color del texto en hover */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
+}
+
+
+/*PAGINA DE INICIO*/
+
+/* Fondo */
+.inicio {
+  background: url('imagenes/overview_ditella.jpg');
+  background-size: cover;
+  position: relative; /* Posiciona el contenedor relativo para colocar el overlay */
+  overflow: hidden;
+}
+
+/* Asegura que todas las diapositivas tengan el mismo tamaño */
+.mySlides img, 
+.mySlides video {
+  width: 100%;
+  height: 100%; /* Aseguramos que todas las slides llenen el contenedor */
+  object-fit: cover; /* Ajusta el contenido para cubrir todo el espacio sin distorsionarse */
+}
+
+/* Aseguramos que las diapositivas estén absolutamente posicionadas y llenen el contenedor */
+.mySlides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Ocultas por defecto */
+  padding: 2%;
+}
+
+/* Contenedor del slideshow para que las slides ocupen todo el espacio */
+.slideshow-container {
+  width: 95%;
+  height: 100vh; /* Altura total de la ventana gráfica */
+  position: relative;
+  overflow: hidden;
+  transition: filter 0.5s ease; /* Transición suave para el desenfoque */
+  margin: auto;
+}
+
+/* Estilo para el fondo desenfocado */
+.slideshow-container.blurred {
+  filter: blur(5px) brightness(0.5); /* Aplicar desenfoque y oscurecer el fondo */
+}
+
+/* Animación de desvanecimiento para aparecer */
+.fade {
+  animation-name: fadeIn; /* Se usa para hacer aparecer */
+  animation-duration: 2.5s;
+  animation-timing-function: ease;
+}
+
+/* Keyframes para fade-in */
+@keyframes fadeIn {
+  from {opacity: 0.1;}
+  to {opacity: 1;}
+}
+
+/* Zoom-in effect */
+.zoom {
+  animation-name: zoomIn;
+  animation-duration: 3s;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Contenedor de items que incluye el logo y el botón */
+.items {
+  display: flex;
+  flex-direction: column; /* Alineación vertical de los elementos */
+  align-items: center;
+  justify-content: center; /* Centrado vertical y horizontal */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Ajustar el tamaño del contenedor si es necesario */
+  height: auto; /* Ajustar altura automáticamente */
+  overflow: hidden;
+}
+
+/* Ajustar el logo */
+#logoContainer {
+  display: none;
+  text-align: center;
+  margin-bottom: 20px; /* Espacio entre el logo y el botón */
+  transition: opacity 0.5s ease;
+  width: 100%; /* Permitir que el logo ocupe todo el ancho si es necesario */
+}
+
+/* Aumentar el tamaño del logo */
+#logoImage {
+  width: 50% !important; /* Tamaño fijo para el logo */
+  height: auto; /* Mantener la proporción */
+}
+
+/* Ajustar el botón */
+#startTourButton {
+  padding: 12px 20px;
+  display: none;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+#startTourButton:hover {
+  background: url('imagenes/fondo_boton.png');
+  background-size: cover;
+  color: #f2f2f2;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+  
+  /*Fin de pagina de inicio*/
+
+  /*GENERALES DE PAGINAS SIGUIENTES*/
+
+footer{
+  font-family: 'Roboto', 'Helvetica', Arial, sans-serif;
+}
+
+/*LOADER*/
+/* Estilos para el video de fondo */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Coloca el video detrás del contenido */
+  object-fit: cover; /* Asegura que el video cubra todo el fondo */
+}
+
+/*ONBOARDING*/
+/* Estilos para el modal */
+/* Panel de onboarding en el lado izquierdo */
+.onboarding-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px; /* Ancho del panel */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Botón de saltear en la esquina superior derecha del panel */
+.skip-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Estilos de contenido */
+.onboarding-step {
+  margin-bottom: 20px;
+}
+
+/* Estilos para los botones de navegación */
+.onboarding-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.nav-button:hover {
+  background-color: #f2f2f2;
+}
+
+#inst{
+  display: none;
+}
+
