@@ -125,7 +125,7 @@ function closeNav() {
 
 //ONBOARDING 
 let currentStep = 1;
-const totalSteps = 3;
+const totalSteps = 4;
 
 function showStep(step) {
   // Ocultar todos los pasos
@@ -139,6 +139,8 @@ function showStep(step) {
   // Verificar si es el último paso
   if (step === totalSteps) {
     document.getElementById("nextButton").innerText = "Finalizar";
+    document.getElementById("icono").style.display = "block"; // Ocultar el icono "?" al abrir el panel
+
   } else {
     document.getElementById("nextButton").innerText = "Siguiente";
   }
@@ -169,11 +171,6 @@ document.getElementById("skipButton").onclick = function () {
 };
 
 // Inicializar el icono "?" como oculto y mostrar el primer paso
-document.getElementById("inst").style.display = "none";
+document.getElementById("icono").style.display = "none";
 showStep(currentStep);
 
-// Función para abrir el panel al hacer clic en "?"
-function openNav() {
-  document.getElementById("onboardingPanel").style.display = "block";
-  document.getElementById("inst").style.display = "none"; // Ocultar el icono "?" al abrir el panel
-}

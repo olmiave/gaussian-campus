@@ -17,68 +17,77 @@
     </style>
 </head>
 <body>
-    <!-- The overlay -->
-    <div id="myNav" class="overlay">
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn btn" onclick="closeNav()">&times;</a>
-        
-        <!-- Overlay content -->
-        <div class="overlay-content">
-            <ol>
-                <li class="titulo">Controles con teclas: </li>
-                    <ul>
-                        <li>Teclas de <span style="font-weight: bold;">flecha izquierda/derecha</span> para moverse de <span style="font-weight: bold;">lado a lado</span></li>
-                        <li>Teclas de <span style="font-weight: bold;">flecha arriba/abajo</span> para moverse hacia <span style="font-weight: bold;">adelante/atrás</span></li>
-                        <li><span class="resaltar">A</span> o <span class="resaltar">D</span> para girar la cámara a la izquierda/derecha</li>
-                        <li><span class="resaltar">W</span> o <span class="resaltar">S</span> para inclinar la cámara hacia arriba/abajo</li>
-                        <li><span class="resaltar">R</span> para reiniciar el recorrido</li>
-                    </ul>
-                
-                <li class="titulo">Trackpad:</li>
-                    <ul>
-                        <li>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</li>
-                        <li>Pellizcar para moverse hacia adelante/atrás</li>
-                        <li><span class="resaltar">Crtl</span><span class="resaltar">+</span>desplazamiento para moverse hacia adelante/atrás</li>
-                        <li><span class="resaltar">Shift</span><span class="resaltar">+</span> desplazamiento para moverse hacia arriba/abajo o moverse de lado a lado</li>
-                    </ul>
-                
-                <li class="titulo">Otros:</li>
-                    <ul>
-                        <li>Pulsar '-' o '+' para alternar las cámaras cargadas</li>
-                        <li>Pulsar <span class="resaltar">P</span> para reanudar la animación predeterminada</li>
-                    </ul>
-            </ol>
-        </div>
-    </div>
 
     <!-- Panel de onboarding -->
     <div id="onboardingPanel" class="onboarding-panel">
         <button id="skipButton" class="skip-button">Saltear</button>
         <div id="onboardingContent">
-        <div class="onboarding-step" id="step1">
-            <h2>Bienvenido</h2>
-            <p>Usa las teclas de <strong>flecha izquierda/derecha</strong> para moverte <strong>de lado a lado</strong>.</p>
-        </div>
+            <div class="onboarding-step" id="step1">
+                <h2>Navegación</h2>
+                <p>Asi podrás desplazarte de un lado a otro, y también hacia adelante y atrás.</p>
+                <p style="margin-bottom: 10%;">¡Intentalo!</p>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col text-start">
+                            <h6>Teclas:</h6>
+                            <!-- Flechas de teclado -->
+                            <svg class="arrow" viewBox="0 0 24 24" style="transform: scale(-1, 1);">
+                                <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="white" />
+                            </svg>
+                            <svg class="arrow" viewBox="0 0 24 24">
+                                <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="white" />
+                            </svg>
+                            <svg class="arrow up" viewBox="0 0 24 24">
+                                <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="white" />
+                            </svg>
+                            <svg class="arrow down" viewBox="0 0 24 24">
+                                <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="white" />
+                            </svg>
+                        </div>
+                        <div class="col text-end">
+                            <h6>Trackpad/mouse:</h6>
+                            <p style="margin-top:10.3%; overflow: visible;">Pellizcar para moverse hacia adelante/atrás. Crtl y dezplaza para moverse hacia la izquierda/derecha</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="onboarding-step" id="step2" style="display: none;">
-            <h2>Control de la cámara</h2>
-            <p>Usa <strong>A</strong> y <strong>D</strong> para girar la cámara a la izquierda/derecha.</p>
+            <h2>Control de la cámara</h2>                
+            <p>Para explorar otros puntos, aprende a girar la camara de izquierda a derecha (teclas  <strong>A</strong> y <strong>D</strong>) y tambien arriba y abajo (teclas <strong>W</strong> y <strong>S</strong>).</p>
+                <p style="margin-bottom: 10%;">¡Haz la prueba!</p>
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col text-start">
+                            <h6>Teclas:</h6>
+                            <div class="arrow">A</div>
+                            <div class="arrow">D</div>
+                            <div class="arrow">W</div>
+                            <div class="arrow">S</div>
+                        </div>
+                        <div class="col text-end">
+                            <h6>Trackpad/mouse:</h6>
+                            <p style="margin-top:10.3%;">Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</p>
+                        </div>
+                    </div>
+                </div>
         </div>
         <div class="onboarding-step" id="step3" style="display: none;">
-            <h2>Reiniciar el recorrido</h2>
-            <p>Pulsa <strong>R</strong> para reiniciar el recorrido en cualquier momento.</p>
+            <h2>Comandos extras</h2>
+            <p>Pulsa <span class="resaltar">R</span> para reiniciar el recorrido en cualquier momento.</p>
+            <p>Pulsar <span class="resaltar">P</span> para reanudar la animación predeterminada</p>
+
+        </div>
+        <div class="onboarding-step" id="step4" style="display: none;">
+            <h2>Comienza tu recorrido</h2>
+            <p> Para ver las intrucciones haz click en el icono <span class="ic">?</span> que se encuentra <strong> arriba a la derecha.</strong> </p>
+            <span id="icono">?</span>
         </div>
         </div>
         <div class="onboarding-buttons">
-        <button id="prevButton" class="nav-button">Anterior</button>
-        <button id="nextButton" class="nav-button">Siguiente</button>
+        <button id="prevButton" class="nav-button btn">Anterior</button>
+        <button id="nextButton" class="nav-button btn">Siguiente</button>
         </div>
     </div>
-  
-
-    <!-- Use any element to open/show the overlay navigation menu -->
-     <div class="inst" id="inst">
-        <span class="btn" onclick="openNav()" style="font-weight: bold; font-size: 1.2em; display:none;">?</span>
-     </div>
 
 	<main>
         <script>

@@ -347,13 +347,13 @@ footer{
 }
 
 /*ONBOARDING*/
-/* Estilos para el modal */
+
 /* Panel de onboarding en el lado izquierdo */
 .onboarding-panel {
   position: fixed;
   left: 0;
   top: 0;
-  width: 300px; /* Ancho del panel */
+  width: 30%; /* Ancho del panel */
   height: 100vh; /* Ocupa toda la altura de la pantalla */
   background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
   color: white;
@@ -367,7 +367,11 @@ footer{
 
 /* Botón de saltear en la esquina superior derecha del panel */
 .skip-button {
+  display: inline-block;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
   position: absolute;
+  z-index: 1;
   top: 10px;
   right: 10px;
   background-color: transparent;
@@ -378,9 +382,20 @@ footer{
   font-size: 16px;
 }
 
+/* Efecto de texto con imagen en hover */
+.skip-button:hover {
+  color: transparent; /* Hacer el texto transparente */
+  background-image: url('imagenes/fondo_boton.png'); /* Imagen para el efecto de relleno */
+  background-clip: text;
+  -webkit-background-clip: text; /* Para compatibilidad con navegadores Webkit */
+  background-size: cover; /* Ajustar la imagen para que cubra el texto */
+}
+
 /* Estilos de contenido */
 .onboarding-step {
   margin-bottom: 20px;
+  margin-top: 20%;
+  align-items: center;
 }
 
 /* Estilos para los botones de navegación */
@@ -390,20 +405,94 @@ footer{
 }
 
 .nav-button {
-  background-color: #fff;
-  color: #333;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  display: inline-block !important; /* Ajuste del tamaño del botón al texto */
+  width: auto; /* Ajuste automático del ancho */
+  font-weight: bold !important;
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  border: none !important;
+  border-radius: 5px !important;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.3s ease !important; /* Smooth transition */
 }
 
 .nav-button:hover {
-  background-color: #f2f2f2;
+background: url('imagenes/fondo_boton.png');
+background-size: cover; /* Ensures the image covers the button */
+color: #f2f2f2; /* Cambia el color del texto en hover */
+box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
 }
 
-#inst{
-  display: none;
+.container {
+  margin-top: 1rem;
+  align-items: baseline;
 }
 
+.arrow {
+  width: 25%;
+  height: 25%;
+  margin: 8%;
+  margin-top: 1%;
+  color:#f1f1f1;
+  font-weight: bold;
+  border: 2px solid #717171;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.2;
+  border-radius: 5px;
+  padding: 3.5%;
+  transition: fill 0.3s; /* Transición suave para el cambio de color */
+}
+
+.arrow:hover{
+  background-color: #f1f1f1;
+  color:rgba(0, 0, 0, 0.7);
+}
+
+.arrow:hover polygon{
+  fill:rgba(0, 0, 0, 0.7);
+}
+
+.arrow.down {
+  transform: rotate(180deg); /* Rotación para apuntar hacia abajo */
+}
+
+.row.align-items-center h6 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+#icono{
+  position: fixed; /* Permite que el botón flote */
+  right: 20px; /* Ajusta la distancia desde el borde derecho */
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  display: none; /* Cambiar a flexbox para centrar el contenido */
+  width: 50px; /* Ajusta el tamaño del círculo */
+  height: 50px; /* Ajusta el tamaño del círculo */
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo */
+  color: white; /* Color del texto */
+  border-radius: 50%; /* Hace que sea un círculo */
+  border: none !important;
+  text-align: center !important; /* Centra el texto */
+  line-height: 50px; /* Centra el texto verticalmente */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.ic {
+  width: 42px !important; /* Ajusta el tamaño del círculo */
+  height: 45px !important; /* Ajusta el tamaño del círculo */
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 0% !important;
+  border-radius: 50% !important; /* Hace que sea un círculo */
+  text-align: center !important; /* Centra el texto */
+  line-height: 40px !important; /* Centra el texto verticalmente */
+  font-weight: bold;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin: 2px;
+  border: 2px solid #717171;
+  display: inline-block; /* Para que el elemento se comporte como bloque y pueda tener ancho/alto */
+}

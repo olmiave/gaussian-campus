@@ -159,7 +159,7 @@ let camera = cameras[0];
 
 // Definir las áreas restringidas (paredes) como un arreglo de coordenadas.
 const walls = [
-    { z: 1},  // Pared lineas del tiempo
+    { z: 1.1},  // Pared lineas del tiempo
     { z: -4},   // Pared de enfrente
     // { x: -9},  // Pared fin de pasillo
     // { x: 0 },   // Pared al comedor
