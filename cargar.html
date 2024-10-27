@@ -4,33 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargando...</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="general.css"> <!-- Enlace a CSS general-->
-    <!--Enlace a bootstrap-->
+    <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkqsA6mOMmGiFSl5Y2nVrG5AsCqtDpkRjgnb4e1BIeKHl++SkaG9gF" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeo5s4KCmOIdb+3zGjA7IIb7rHgATl+0BfF5LG5czJj7Sk7g" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos para la página de carga */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('imagenes/overview_ditella.jpg');
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+
+        section {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Contenedor del loader */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            gap: 15px; /* Espacio entre el loader y el texto */
+        }
+
+        /* Loader con tres colores */
+        .loader {
+            position: relative;
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #F9BC00;
+            border-right: 8px solid #2ECABB;
+            border-bottom: 8px solid #E31E93;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1.5s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Imagen centrada dentro del loader */
+        .loader .icon-center {
+            position: absolute;
+            width: 30px; /* Ajusta el tamaño de la imagen */
+            height: 30px;
+        }
+
+        /* Animación de giro del loader */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Texto del dato curioso */
+        .fun-fact {
+            font-size: 1.2em;
+            max-width: 80%; /* Limitar el ancho para centrar el texto */
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <video autoplay muted loop class="video-background">
-        <source src="imagenes\loader.mp4" type="video/mp4"> <!-- Cambia esto a la ruta de tu video -->
-        Tu navegador no soporta videos.
-    </video>
+    <section>
+        <!-- Contenedor principal del loader -->
+        <div class="loader-container">
+            <div class="loader">
+                <img src="imagenes/logo_loader.png" alt="Ícono central" class="icon-center"> <!-- Imagen en el centro -->
+            </div>
+            <h2>Cargando, por favor espera...</h2>
+            <p class="fun-fact" id="funFact"></p> <!-- Dato curioso -->
+        </div>
+    </section>
+
     <script>
+        // Datos curiosos para mostrar
+        const funFacts = [
+            "🎨 Cuna de artistas: El Instituto Di Tella fue el “MoMA” de Buenos Aires en los 60.",
+            "📚 Biblioteca en alcantarillas: Parte de la UTDT está construida sobre antiguas cloacas de Buenos Aires.",
+            "🌎 Red global: Tiene convenios con universidades como Harvard y MIT.",
+            "🕺 Festival de ideas: En los 60, se presentaron shows con happenings y arte experimental.",
+            "🏛️ Arquitectura icónica: Su sede actual fue diseñada por el famoso arquitecto Clorindo Testa.",
+            "👨‍🏫 Nobel en casa: Ex profesores y alumnos han sido nominados al Nobel en economía.",
+            "💡 Primera en todo: UTDT fue de las primeras en mezclar carreras como economía y diseño.",
+            "💼 Generación de startups: Alumnos de la UTDT han fundado exitosas empresas tech en Argentina.",
+            "🖼️ Arte propio: Cuenta con una de las colecciones de arte moderno más importantes del país.",
+            "🎓 Graduación única: La ceremonia se hace en su sede de Alcorta, con vista a obras de arte."
+        ];
+
+        // Mostrar un dato curioso aleatorio
+        document.getElementById("funFact").innerText = funFacts[Math.floor(Math.random() * funFacts.length)];
+
         // Extraer el parámetro "destino" de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const destino = urlParams.get('destino');
 
-        // Redirigir a la página de destino después de 2 segundos
+        // Redirigir a la página de destino después de unos segundos
         setTimeout(() => {
             if (destino) {
                 window.location.href = destino;
             } else {
-                window.location.href = 'pagina1.html'; // Redirigir a una página predeterminada si no hay destino
+                window.location.href = 'index.html'; // Redirigir a una página predeterminada si no hay destino
             }
-        }, 2000); // 2000 milisegundos = 2 segundos
+        }, 5000); // Cambia el tiempo de espera aquí (5000 ms = 5 segundos)
     </script>
 </body>
 </html>

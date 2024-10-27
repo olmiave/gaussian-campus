@@ -764,10 +764,7 @@ void main () {
 
 `.trim();
 
-let defaultViewMatrix = [
-    0.47, 0.04, 0.88, 0, -0.11, 0.99, 0.02, 0, -0.88, -0.11, 0.47, 0, 0.07,
-    0.03, 6.55, 1,
-];
+let defaultViewMatrix = [0.996643553023809, -0.01913941265615243, 0.05687979517601082, -0, -0.0040994763037811265, 0.8811073673919788, 0.46500860359956225, 0, -0.06392104139470055, -0.47014279113636, 0.8844658593803889, 0, 1.9594880254346039, 0.10391498636406818, 1.524932798722851, 0.9999999999999933];
 let viewMatrix = defaultViewMatrix;
 async function main() {
     let carousel = true;
@@ -779,8 +776,8 @@ async function main() {
     const url = new URL(
         // "nike.splat",
         // location.href,
-        params.get("url") || "train.splat",
-        "https://huggingface.co/cakewalk/splat-data/resolve/main/",
+        params.get("url") || "model.splat",
+        "https://huggingface.co/olmiave/td8_splat/resolve/main/model.splat?download=true",
     );
     const req = await fetch(url, {
         mode: "cors", // no-cors, *cors, same-origin
@@ -1209,10 +1206,7 @@ async function main() {
 
     let leftGamepadTrigger, rightGamepadTrigger;
 
-    const defaultViewMatrix = [
-        0.47, 0.04, 0.88, 0, -0.11, 0.99, 0.02, 0, -0.88, -0.11, 0.47, 0, 0.07,
-        0.03, 6.55, 1,
-    ];
+    const defaultViewMatrix = [0.996643553023809, -0.01913941265615243, 0.05687979517601082, -0, -0.0040994763037811265, 0.8811073673919788, 0.46500860359956225, 0, -0.06392104139470055, -0.47014279113636, 0.8844658593803889, 0, 1.9594880254346039, 0.10391498636406818, 1.524932798722851, 0.9999999999999933];
 
     const frame = (now) => {
         let inv = invert4(viewMatrix);
