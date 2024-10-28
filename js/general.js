@@ -94,7 +94,7 @@ function keepLastImage() {
 
 //BOTON DE COMENZAR RECORRIDO
 function startTour() {
-    window.location.href = "cargar.html?destino=onboarding.html"; // Redirigir a la página de destino del recorrido
+    window.location.href = "cargar.html?destino=lobby.html"; // Redirigir a la página de destino del recorrido
 }
 
 // Iniciar el slideshow al cargar la página
@@ -124,53 +124,50 @@ function closeNav() {
 }
 
 //ONBOARDING 
-let currentStep = 1;
-const totalSteps = 4;
+let currentStep = 0;
+const steps = document.querySelectorAll('.onboarding-step');
 
 function showStep(step) {
-  // Ocultar todos los pasos
-  for (let i = 1; i <= totalSteps; i++) {
-    document.getElementById(`step${i}`).style.display = "none";
-  }
-  
-  // Mostrar el paso actual
-  document.getElementById(`step${step}`).style.display = "block";
-
-  // Verificar si es el último paso
-  if (step === totalSteps) {
-    document.getElementById("nextButton").innerText = "Finalizar";
-    document.getElementById("icono").style.display = "block"; // Ocultar el icono "?" al abrir el panel
-
-  } else {
-    document.getElementById("nextButton").innerText = "Siguiente";
-  }
+    steps.forEach((s, index) => {
+        s.style.display = index === step ? 'block' : 'none';
+    });
+    updateButtons();
 }
 
-// Navegación para botón "Siguiente"
-document.getElementById("nextButton").onclick = function () {
-  if (currentStep < totalSteps) {
-    currentStep++;
-    showStep(currentStep);
-  } else {
-    // Finalizar el onboarding
-    window.location.href = "cargar.html?destino=lobby.html";
-  }
+function updateButtons() {
+    document.getElementById('prevButton').style.display = currentStep === 0 ? 'none' : 'inline-block';
+    document.getElementById('nextButton').style.display = currentStep === steps.length - 1 ? 'none' : 'inline-block';
+}
+
+document.getElementById('prevButton').onclick = function() {
+    if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+    }
 };
 
-// Navegación para botón "Anterior"
-document.getElementById("prevButton").onclick = function () {
-  if (currentStep > 1) {
-    currentStep--;
-    showStep(currentStep);
-  }
+document.getElementById('nextButton').onclick = function() {
+    if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+    } else {
+        // Finalizar onboarding y mostrar consejos
+        document.getElementById('tips').style.display = 'block';
+        document.getElementById('onboardingPanel').classList.add('minimized');
+    }
 };
 
-// Cerrar el panel con el botón "Saltear"
-document.getElementById("skipButton").onclick = function () {
-  window.location.href = "cargar.html?lobby.html";
-};
+function toggleMinimize() {
+    const panel = document.getElementById('onboardingPanel');
+    const tips = document.getElementById('tips');
+    panel.classList.toggle('minimized');
+    tips.classList.toggle('minimized');
+}
 
-// Inicializar el icono "?" como oculto y mostrar el primer paso
-document.getElementById("icono").style.display = "none";
+function skipOnboarding() {
+    document.getElementById('tips').style.display = 'block';
+    document.getElementById('onboardingPanel').style.display = 'none';
+}
+
+// Mostrar el primer paso al cargar la página
 showStep(currentStep);
-
