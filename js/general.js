@@ -131,6 +131,9 @@ function showStep(step) {
     steps.forEach((s, index) => {
         s.style.display = index === step ? 'block' : 'none';
     });
+    if (step == steps){
+        document.getElementById('nextButton').innerText = 'Finalizar'
+    }
     updateButtons();
 }
 
@@ -146,28 +149,29 @@ document.getElementById('prevButton').onclick = function() {
     }
 };
 
+// Al hacer clic en "Finalizar"
 document.getElementById('nextButton').onclick = function() {
     if (currentStep < steps.length - 1) {
         currentStep++;
         showStep(currentStep);
     } else {
-        // Finalizar onboarding y mostrar consejos
+        // Mostrar el recuadro de tips y minimizar el onboarding
         document.getElementById('tips').style.display = 'block';
-        document.getElementById('onboardingPanel').classList.add('minimized');
+        document.getElementById('onboardingPanel').style.display = 'none';
     }
 };
 
-function toggleMinimize() {
-    const panel = document.getElementById('onboardingPanel');
-    const tips = document.getElementById('tips');
-    panel.classList.toggle('minimized');
-    tips.classList.toggle('minimized');
-}
-
+// Al hacer clic en "Saltear"
 function skipOnboarding() {
     document.getElementById('tips').style.display = 'block';
     document.getElementById('onboardingPanel').style.display = 'none';
 }
 
+
+// Función para minimizar o maximizar el panel de consejos
+function toggleTips() {
+    const tipsPanel = document.getElementById('tips');
+    tipsPanel.classList.toggle('minimized');
+}
 // Mostrar el primer paso al cargar la página
 showStep(currentStep);

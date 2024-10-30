@@ -33,23 +33,23 @@
                             <svg class="arrow" viewBox="0 0 24 24">
                                 <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="rgba(0, 0, 0, 0.7)" />
                             </svg>
-                            <svg class="arrow up" viewBox="0 0 24 24">
+                            <svg class="arrow" viewBox="0 0 24 24">
                                 <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="rgba(0, 0, 0, 0.7)" />
                             </svg>
-                            <svg class="arrow down" viewBox="0 0 24 24">
+                            <svg class="arrow" style="transform: rotate(180deg);" viewBox="0 0 24 24">
                                 <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="rgba(0, 0, 0, 0.7)" />
                             </svg>
                         </div>
                         <div class="col text-end">
                             <h4>Trackpad/mouse:</h4>
-                            <div class="arrow">
-                                <img src="imagenes/icono_pellizcar.png" alt="Icono Pellizcar">
+                            <div class="trackpad-instruction">
+                                <img src="imagenes/icono_pellizcar_negro.png" alt="Icono Pellizcar" class="arrow pellizcar">
+                                <p>Pellizcar para moverse hacia adelante/atrás.</p>
                             </div>
-                            <p>Pellizcar para moverse hacia adelante/atrás.</p>
-                            <div class="arrow">
-                                <img src="imagenes/icono_pellizcar.png" alt="Icono Pellizcar">
+                            <div class="trackpad-instruction">
+                                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="arrow desplazar">
+                                <p><span class="resaltar">Ctrl</span> y desplazar para moverse hacia la izquierda/derecha</p>
                             </div>
-                            <p><span class="resaltar">Ctrl</span> y desplaza para moverse hacia la izquierda/derecha</p>                            
                         </div>
                     </div>
                     
@@ -70,7 +70,10 @@
                         </div>
                         <div class="col text-end">
                             <h4>Trackpad/mouse:</h4>
-                            <p>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</p>
+                            <div class="trackpad-instruction">
+                                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="arrow desplazar">
+                                <p>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</p>                            
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +86,6 @@
             <div class="onboarding-step" id="step5" style="display: none;">
                 <h2>Comienza tu recorrido</h2>
                 <p>Para ver las instrucciones haz clic en el icono <span class="ic">?</span> que se encuentra <strong>arriba a la derecha.</strong></p>
-                <span id="icono">?</span>
             </div>
         </div>
         <div class="navigation-buttons">
@@ -92,15 +94,52 @@
         </div>
     </div>
 
-    <div id="tips" class="tips">
-        <h4>Consejos para el usuario</h4>
-        <ul>
-            <li>Pulsa <strong>R</strong> para reiniciar.</li>
-            <li>Pulsa <strong>P</strong> para pausar.</li>
-            <li>Usa las teclas <strong>A</strong>, <strong>S</strong>, <strong>D</strong>, <strong>W</strong> para moverte.</li>
-        </ul>
-        <button id="minimizeButton" class="nav-button btn" onclick="toggleMinimize()">Minimizar</button>
+<!-- Panel de Consejos -->
+<div id="tips" class="tips">
+    <button onclick="toggleTips()" id="toggleTipsButton" class="minimize-btn">-</button> <!-- Botón para minimizar -->
+    <div class="tips-content">
+        <h4>Consejos</h4>
+        <div class="keyboard-tips">
+            <p>Adelante - Atrás - Derecha - Izquierda</p>
+            <div>
+                <svg class="a" viewBox="0 0 24 24" style="transform: scale(-1, 1);">
+                    <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="black" />
+                </svg>
+                <svg class="a" viewBox="0 0 24 24">
+                    <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="black" />
+                </svg>
+            </div>
+            <div>
+                <svg class="a" viewBox="0 0 24 24">
+                    <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="black" />
+                </svg>
+                <svg class="a" style="transform: rotate(180deg);" viewBox="0 0 24 24">
+                    <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="black" />
+                </svg>
+            </div>
+        </div>
+        <div class="trackpad-instruction">
+            <img src="imagenes/icono_pellizcar_negro.png" alt="Icono Pellizcar" class="a pellizcar">
+            <p>Adelante/atrás.</p>
+        </div>
+        <div class="trackpad-instruction">
+            <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="a desplazar">
+            <p><span class="resaltar">Ctrl</span> e izquierda/derecha.</p>
+        </div>
+        <div class="trackpad-tips">
+            <p>Rotación</p>
+            <div class="a">A</div>
+            <div class="a">D</div>
+            <div class="a">W</div>
+            <div class="a">S</div>
+            <div class="trackpad-instruction">
+                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="a desplazar">
+                <p>Arriba / abajo / izquierda / derecha para orbitar</p>                            
+            </div>
+        </div>
     </div>
+</div>
+
 
     <main>
         <script>
