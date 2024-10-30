@@ -108,6 +108,7 @@ ol li{
   border-radius: 3px; /* Bordes redondeados */
   border: 2px solid #717171;
   display: inline-block; /* Para que el elemento se comporte como bloque y pueda tener ancho/alto */
+  color: white;
 }
 
 /* The Overlay (background) */
@@ -356,7 +357,7 @@ footer{
   left: 50%;
   width: 80%; /* Ancho del panel */
   height: auto; /* Ajustar a la altura del contenido */
-  min-height: 100px; /* Altura mínima para el panel */
+  max-height: 50%; /* Altura mínima para el panel */
   background-color: #F9BC00; /* Fondo semitransparente */
   color: black;
   padding: 10px; /* Padding ajustado */
@@ -423,6 +424,10 @@ footer{
   display: none;
 }
 
+.onboarding-panel h2{
+  margin: 1%;
+}
+
 /* Estilos para los botones de navegación */
 .onboarding-buttons {
   display: flex;
@@ -468,9 +473,9 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 }
 
 .arrow {
-  width: 15%; /* Ancho fijo para que sea un cuadrado */
-  height: 15%; /* Alto fijo para que sea un cuadrado */
-  margin: 8%;
+  width: 40px; /* Ancho fijo para que sea un cuadrado */
+  height: 40px; /* Alto fijo para que sea un cuadrado */
+  margin: 3%;
   margin-top: 1%;
   color: #f1f1f1;
   font-weight: bold;
@@ -488,6 +493,12 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 .arrow:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Cambia el color de fondo al pasar el mouse */
   color: white; /* Cambia el color del texto al pasar el mouse */
+}
+
+.arrow img {
+  width: 100%; /* Ajusta el ancho al contenedor */
+  height: 100%; /* Ajusta el alto al contenedor */
+  object-fit: contain; /* Asegura que la imagen mantenga su relación de aspecto */
 }
 
 .arrow:hover polygon {
