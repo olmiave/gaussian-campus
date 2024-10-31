@@ -171,7 +171,17 @@ function skipOnboarding() {
 // Función para minimizar o maximizar el panel de consejos
 function toggleTips() {
     const tipsPanel = document.getElementById('tips');
+    const toggleButton = document.getElementById("toggleTipsButton");
+
+    // Cambiar la clase 'minimized'
     tipsPanel.classList.toggle('minimized');
+
+    // Cambiar el texto del botón según el estado del panel
+    if (tipsPanel.classList.contains('minimized')) {
+        toggleButton.innerText = "Abrir";
+    } else {
+        toggleButton.innerText = "Cerrar";
+    }
 }
 // Mostrar el primer paso al cargar la página
 showStep(currentStep);
