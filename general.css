@@ -9,6 +9,7 @@
 body {
   overflow-x: hidden; /* Oculta el desbordamiento horizontal */
   font-family: "Helvetica", Arial, sans-serif;
+  overflow: hidden;
 }
 
 main {
@@ -473,8 +474,8 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 }
 
 .arrow {
-  width: 40px; /* Ancho fijo para que sea un cuadrado */
-  height: 40px; /* Alto fijo para que sea un cuadrado */
+  width: 40px !important; /* Ancho fijo para que sea un cuadrado */
+  height: 40px !important; /* Alto fijo para que sea un cuadrado */
   margin: 3%;
   margin-top: 1%;
   color: #f1f1f1;
@@ -506,11 +507,11 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 }
 
 .pellizcar:hover {
-  background: url("imagenes/icono_pellizcar_negro.png");
+  background: url("imagenes/icono_pellizcar_negro.png") !important;
 }
 
 .desplazar:hover {
-  background: url("imagenes/icono_desplazar_negro.png");
+  background: url("imagenes/icono_desplazar_negro.png") !important;
 }
 
 .trackpad-instruction {
@@ -599,6 +600,7 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 
 .tips.minimized button{
   margin: 1%;
+  font-size: 14px !important
 }
 
 /* Ocultar contenido al minimizar */
@@ -631,4 +633,12 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 
 .a:hover polygon {
   fill: white; /* Cambia el color del polígono al pasar el mouse */
+}
+
+#espacio {
+  display: none;
+}
+
+#inst {
+  display: none;
 }

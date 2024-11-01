@@ -10,6 +10,44 @@
     <title>Lobby</title>
 </head>
 <body>
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn btn" onclick="closeNav()">&times;</a>
+        
+        <!-- Overlay content -->
+        <div class="overlay-content">
+            <ol>
+                <li class="titulo">Controles con teclas: </li>
+                    <ul>
+                        <li>Teclas de <span style="font-weight: bold;">flecha izquierda/derecha</span> para moverse de <span style="font-weight: bold;">lado a lado</span></li>
+                        <li>Teclas de <span style="font-weight: bold;">flecha arriba/abajo</span> para moverse hacia <span style="font-weight: bold;">adelante/atrás</span></li>
+                        <li><span class="resaltar">A</span> o <span class="resaltar">D</span> para girar la cámara a la izquierda/derecha</li>
+                        <li><span class="resaltar">W</span> o <span class="resaltar">S</span> para inclinar la cámara hacia arriba/abajo</li>
+                        <li><span class="resaltar">R</span> para reiniciar el recorrido</li>
+                    </ul>
+                
+                <li class="titulo">Trackpad:</li>
+                    <ul>
+                        <li>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</li>
+                        <li>Pellizcar para moverse hacia adelante/atrás</li>
+                        <li><span class="resaltar">Crtl</span><span class="resaltar">+</span>desplazamiento para moverse hacia adelante/atrás</li>
+                        <li><span class="resaltar">Shift</span><span class="resaltar">+</span> desplazamiento para moverse hacia arriba/abajo o moverse de lado a lado</li>
+                    </ul>
+                
+                <li class="titulo">Otros:</li>
+                    <ul>
+                        <li>Pulsar '-' o '+' para alternar las cámaras cargadas</li>
+                        <li>Pulsar <span class="resaltar">P</span> para reanudar la animación predeterminada</li>
+                    </ul>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Use any element to open/show the overlay navigation menu -->
+     <div class="inst">
+        <span id = "inst" class="btn" onclick="openNav()" style="font-weight: bold; font-size: 1.2em; display: none;">?</span>
+     </div>
 
     <!-- Panel de onboarding -->
     <div id="onboardingPanel" class="onboarding-panel">
@@ -87,12 +125,20 @@
                 <h2>Comienza tu recorrido</h2>
                 <p>Para ver las instrucciones haz clic en el icono <span class="ic">?</span> que se encuentra <strong>arriba a la derecha.</strong></p>
             </div>
+            <div class="onboarding-step" id="step6" style="display: none;">
+                <h2>Sigue recorriendo</h2>
+                <p>Para recorrer otros espacios haz click en "Continuar", para volver al inicio haz click en "Inicio" que se encontrarán <strong>abajo a la izquierda.</strong></p>
+            </div>
         </div>
         <div class="navigation-buttons">
             <button id="prevButton" class="nav-button btn">Anterior</button>
             <button id="nextButton" class="nav-button btn">Siguiente</button>
         </div>
     </div>
+
+    <!--Botones para navegar fuera del espacio-->
+    <button id="espacio" class="button btn">Volver a inicio</button>
+    <button id="espacio" class="button btn">Continuar recorrido</button>
 
 <!-- Panel de Consejos -->
 <div id="tips" class="tips">

@@ -131,9 +131,18 @@ function showStep(step) {
     steps.forEach((s, index) => {
         s.style.display = index === step ? 'block' : 'none';
     });
-    if (step == steps){
-        document.getElementById('nextButton').innerText = 'Finalizar'
+    // Actualiza el texto del botón "nextButton" al final del último paso
+    if (step === steps.length - 1) {
+        document.getElementById('nextButton').innerText = 'Finalizar';
+    } else {
+        document.getElementById('nextButton').innerText = 'Continuar';
     }
+
+    // Muestra el botón `espacio` en el último paso
+    document.getElementById('espacio').style.display = step === steps.length - 1 ? 'inline-block' : 'none';
+
+    // Muestra el botón `inst` en el penúltimo paso, si es necesario
+    document.getElementById('inst').style.display = step === steps.length - 2 ? 'inline-block' : 'none';
     updateButtons();
 }
 
