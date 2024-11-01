@@ -359,7 +359,7 @@ footer{
   max-height: 50%; /* Altura mínima para el panel */
   background-color: #F9BC00; /* Fondo semitransparente */
   color: black;
-  padding: 10px; /* Padding ajustado */
+  padding: 1%; /* Padding ajustado */
   box-sizing: border-box;
   transform: translateX(-50%);
   z-index: 100;
@@ -417,7 +417,7 @@ footer{
 /* Estilos de contenido */
 .onboarding-step {
   margin-bottom: 20px;
-  margin-top: 5%;
+  margin-top: 2%;
   align-items: center;
   text-align: center;
   display: none;
@@ -469,6 +469,7 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 
 .col {
   width: 50%;
+  white-space: nowrap;
 }
 
 .arrow {
@@ -587,10 +588,10 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 
 /* Estado minimizado */
 .tips.minimized {
-  transform: scale(0.5); /* Reducir el tamaño */
-  opacity: 0.5; /* Transparencia */
-  width: 50px; /* Ancho reducido */
-  height: 50px;
+  transform: scale(0.9); /* Reducir el tamaño */
+  width: wrap; /* Ancho reducido */
+  height: auto;
+  padding: 1%;
   cursor: pointer;
   overflow: hidden;
 }
