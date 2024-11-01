@@ -635,9 +635,35 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
   fill: white; /* Cambia el color del polígono al pasar el mouse */
 }
 
-#espacio {
+.boton {
   display: none;
+  width: auto; /* Ajuste automático del ancho */
+  font-weight: bold !important;
+  color: white !important;
+  padding: 1%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  margin: 1%;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer;
+  transition: background 0.3s ease !important; /* Smooth transition */
+  position: fixed;
+  bottom: 20px; /* Ajusta según el espacio que necesites */
+  left: 20px; /* Ajusta según el espacio que necesites */
+  text-decoration: none;
+  z-index: 1000; /* Asegúrate de que se superponga al contenido */
 }
+
+.boton:hover {
+background: url('imagenes/fondo_boton.png');
+background-size: cover; /* Ensures the image covers the button */
+color: #f2f2f2; /* Cambia el color del texto en hover */
+box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
+}
+
+
 
 #inst {
   display: none;

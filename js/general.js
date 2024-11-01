@@ -139,7 +139,8 @@ function showStep(step) {
     }
 
     // Muestra el botón `espacio` en el último paso
-    document.getElementById('espacio').style.display = step === steps.length - 1 ? 'inline-block' : 'none';
+    document.getElementById('espacioInicio').style.display = step === steps.length - 1 ? 'inline-block' : 'none';
+    document.getElementById('espacioIr').style.display = step === steps.length - 1 ? 'inline-block' : 'none';
 
     // Muestra el botón `inst` en el penúltimo paso, si es necesario
     document.getElementById('inst').style.display = step === steps.length - 2 ? 'inline-block' : 'none';
@@ -174,6 +175,9 @@ document.getElementById('nextButton').onclick = function() {
 function skipOnboarding() {
     document.getElementById('tips').style.display = 'block';
     document.getElementById('onboardingPanel').style.display = 'none';
+    document.getElementById('espacioInicio').style.display = 'inline-block';
+    document.getElementById('espacioIr').style.display = 'inline-block';
+    document.getElementById('inst').style.display = 'inline-block';
 }
 
 
