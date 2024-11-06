@@ -636,24 +636,22 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 }
 
 .boton {
-  display: none;
+  display: inline-block;
   width: auto; /* Ajuste automático del ancho */
   font-weight: bold !important;
   color: white !important;
-  padding: 1%;
-  padding-left: 2.5%;
-  padding-right: 2.5%;
+  padding: 2%;
+  padding-left: 3% !important;
+  padding-right: 3% !important;
   margin: 1%;
   background-color: rgba(0, 0, 0, 0.7) !important;
   border: none !important;
   border-radius: 5px !important;
   cursor: pointer;
   transition: background 0.3s ease !important; /* Smooth transition */
-  position: fixed;
   bottom: 20px; /* Ajusta según el espacio que necesites */
   left: 20px; /* Ajusta según el espacio que necesites */
   text-decoration: none;
-  z-index: 1000; /* Asegúrate de que se superponga al contenido */
 }
 
 .boton:hover {
@@ -663,7 +661,16 @@ color: #f2f2f2; /* Cambia el color del texto en hover */
 box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
 }
 
-
+.botones {
+  width: 40%;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: row; /* Coloca los botones en una columna */
+  gap: 10px; /* Espacio entre los botones */
+  z-index: 1000 !important; /* Asegura que estén por encima del contenido */
+}
 
 #inst {
   display: none;

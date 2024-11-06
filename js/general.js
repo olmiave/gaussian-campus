@@ -143,7 +143,7 @@ function showStep(step) {
     document.getElementById('espacioIr').style.display = step === steps.length - 1 ? 'inline-block' : 'none';
 
     // Muestra el botón `inst` en el penúltimo paso, si es necesario
-    document.getElementById('inst').style.display = step === steps.length - 2 ? 'inline-block' : 'none';
+    document.getElementById('inst').style.display = step >= steps.length - 2 ? 'inline-block' : 'none';
     updateButtons();
 }
 
