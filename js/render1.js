@@ -1046,41 +1046,29 @@ async function main() {
     });
 
     canvas.addEventListener("mousemove", (e) => {
-        e.preventDefault();
-        if (down == 1) {
-            let inv = invert4(viewMatrix);
-            let dx = (5 * (e.clientX - startX)) / innerWidth;
-            let dy = (5 * (e.clientY - startY)) / innerHeight;
-            let d = 4;
-
-            inv = translate4(inv, 0, 0, d);
-            inv = rotate4(inv, dx, 0, 1, 0);
-            inv = rotate4(inv, -dy, 1, 0, 0);
-            inv = translate4(inv, 0, 0, -d);
-            // let postAngle = Math.atan2(inv[0], inv[10])
-            // inv = rotate4(inv, postAngle - preAngle, 0, 0, 1)
-            // console.log(postAngle)
-            viewMatrix = invert4(inv);
-
-            startX = e.clientX;
-            startY = e.clientY;
-        } else if (down == 2) {
-            let inv = invert4(viewMatrix);
-            // inv = rotateY(inv, );
-            // let preY = inv[13];
-            inv = translate4(
-                inv,
-                (-10 * (e.clientX - startX)) / innerWidth,
-                0,
-                (10 * (e.clientY - startY)) / innerHeight,
-            );
-            // inv[13] = preY;
-            viewMatrix = invert4(inv);
-
-            startX = e.clientX;
-            startY = e.clientY;
+        if (down) {
+            let invNew = invert4(viewMatrix); // Nueva matriz tentativa
+    
+            if (down === 1) { // Rotación con botón izquierdo
+                let dx = (5 * (e.clientX - startX)) / innerWidth;
+                let dy = (5 * (e.clientY - startY)) / innerHeight;
+                invNew = rotate4(invNew, dx, 0, 1, 0);
+                invNew = rotate4(invNew, -dy, 1, 0, 0);
+            } else if (down === 2) { // Traslación con botón derecho
+                let dx = (-10 * (e.clientX - startX)) / innerWidth;
+                let dy = (10 * (e.clientY - startY)) / innerHeight;
+                invNew = translate4(invNew, dx, 0, dy);
+            }
+    
+            // Verificar colisiones antes de aplicar
+            if (!isColliding(invNew)) {
+                viewMatrix = invert4(invNew);
+                startX = e.clientX;
+                startY = e.clientY;
+            }
         }
     });
+    
     canvas.addEventListener("mouseup", (e) => {
         e.preventDefault();
         down = false;
@@ -1116,24 +1104,29 @@ async function main() {
         (e) => {
             e.preventDefault();
             if (e.touches.length === 1 && down) {
-                let inv = invert4(viewMatrix);
+                let invNew = invert4(viewMatrix);
+    
+                // Rotación basada en el movimiento táctil
                 let dx = (4 * (e.touches[0].clientX - startX)) / innerWidth;
                 let dy = (4 * (e.touches[0].clientY - startY)) / innerHeight;
-
-                let d = 4;
-                inv = translate4(inv, 0, 0, d);
-                // inv = translate4(inv,  -x, -y, -z);
-                // inv = translate4(inv,  x, y, z);
-                inv = rotate4(inv, dx, 0, 1, 0);
-                inv = rotate4(inv, -dy, 1, 0, 0);
-                inv = translate4(inv, 0, 0, -d);
-
-                viewMatrix = invert4(inv);
-
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
+                invNew = rotate4(invNew, dx, 0, 1, 0);
+                invNew = rotate4(invNew, -dy, 1, 0, 0);
+    
+                console.log("Posición tentativa con touchmove:", invNew[12], invNew[13], invNew[14]);
+    
+                // Validar colisiones antes de aplicar
+                if (!isColliding(invNew)) {
+                    console.log("No hay colisión, aplicando transformación.");
+                    viewMatrix = invert4(invNew);
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                } else {
+                    console.log("Colisión detectada, ignorando transformación.");
+                }
             } else if (e.touches.length === 2) {
-                // alert('beep')
+                let invNew = invert4(viewMatrix);
+    
+                // Escalado y rotación basada en dos toques
                 const dtheta =
                     Math.atan2(startY - altY, startX - altX) -
                     Math.atan2(
@@ -1156,26 +1149,30 @@ async function main() {
                         e.touches[1].clientY -
                         (startY + altY)) /
                     2;
-                let inv = invert4(viewMatrix);
-                // inv = translate4(inv,  0, 0, d);
-                inv = rotate4(inv, dtheta, 0, 0, 1);
-
-                inv = translate4(inv, -dx / innerWidth, -dy / innerHeight, 0);
-
-                // let preY = inv[13];
-                inv = translate4(inv, 0, 0, 3 * (1 - dscale));
-                // inv[13] = preY;
-
-                viewMatrix = invert4(inv);
-
-                startX = e.touches[0].clientX;
-                altX = e.touches[1].clientX;
-                startY = e.touches[0].clientY;
-                altY = e.touches[1].clientY;
+    
+                invNew = rotate4(invNew, dtheta, 0, 0, 1);
+                invNew = translate4(invNew, -dx / innerWidth, -dy / innerHeight, 0);
+                invNew = translate4(invNew, 0, 0, 3 * (1 - dscale));
+    
+                console.log("Posición tentativa con touchmove (2 toques):", invNew[12], invNew[13], invNew[14]);
+    
+                // Validar colisiones antes de aplicar
+                if (!isColliding(invNew)) {
+                    console.log("No hay colisión, aplicando transformación.");
+                    viewMatrix = invert4(invNew);
+    
+                    startX = e.touches[0].clientX;
+                    altX = e.touches[1].clientX;
+                    startY = e.touches[0].clientY;
+                    altY = e.touches[1].clientY;
+                } else {
+                    console.log("Colisión detectada, ignorando transformación.");
+                }
             }
         },
         { passive: false },
     );
+    
     canvas.addEventListener(
         "touchend",
         (e) => {
