@@ -159,12 +159,12 @@ let camera = cameras[0];
 
 // Definir las áreas restringidas (paredes) como un arreglo de coordenadas.
 const walls = [
-    { z: 1.1},  // Pared lineas del tiempo
-    { z: -4},   // Pared de enfrente
-    // { x: -9},  // Pared fin de pasillo
-    // { x: 0 },   // Pared al comedor
+    { z: 1.5},  // Pared pizarron
+    { z: -2.5},   // Pared fondo
+    { x: 0.5},  // Pared izq
+    { x: 5},   // Pared derecha
     { y: -2.70},  // Techo
-    { y: -1.20},   // Piso
+    { y: -0},   // Piso
 ];
 
 function getProjectionMatrix(fx, fy, width, height) {
@@ -764,7 +764,7 @@ void main () {
 
 `.trim();
 
-let defaultViewMatrix = [0.9968079985717688, 0.020059363740032442, -0.05358578085264605, 0, -0.015482996652314082, 0.9960136574039044, -0.01780648981502003, 0, 0.049148812733316914, 0.015973191349518117, 1.0023618365466214, -0, -1.8788615323284215, -0.18614580137787629, 1.7578544220251922, 0.9999999999999682];
+let defaultViewMatrix = [0.9631545022819286, 0.019253350532797153, 0.2624170597108447, 0, -0.00439680005836649, 0.9956345206372152, -0.035952322104850665, 0, -0.26854488330512877, 0.031006258125193236, 0.9666034645125869, 0, -1.9526647958102548, -0.17175758282454748, 0.07824891466930294, 0.999999999999965];
 let viewMatrix = defaultViewMatrix;
 async function main() {
     let carousel = true;
@@ -1046,29 +1046,41 @@ async function main() {
     });
 
     canvas.addEventListener("mousemove", (e) => {
-        if (down) {
-            let invNew = invert4(viewMatrix); // Nueva matriz tentativa
-    
-            if (down === 1) { // Rotación con botón izquierdo
-                let dx = (5 * (e.clientX - startX)) / innerWidth;
-                let dy = (5 * (e.clientY - startY)) / innerHeight;
-                invNew = rotate4(invNew, dx, 0, 1, 0);
-                invNew = rotate4(invNew, -dy, 1, 0, 0);
-            } else if (down === 2) { // Traslación con botón derecho
-                let dx = (-10 * (e.clientX - startX)) / innerWidth;
-                let dy = (10 * (e.clientY - startY)) / innerHeight;
-                invNew = translate4(invNew, dx, 0, dy);
-            }
-    
-            // Verificar colisiones antes de aplicar
-            if (!isColliding(invNew)) {
-                viewMatrix = invert4(invNew);
-                startX = e.clientX;
-                startY = e.clientY;
-            }
+        e.preventDefault();
+        if (down == 1) {
+            let inv = invert4(viewMatrix);
+            let dx = (5 * (e.clientX - startX)) / innerWidth;
+            let dy = (5 * (e.clientY - startY)) / innerHeight;
+            let d = 4;
+
+            inv = translate4(inv, 0, 0, d);
+            inv = rotate4(inv, dx, 0, 1, 0);
+            inv = rotate4(inv, -dy, 1, 0, 0);
+            inv = translate4(inv, 0, 0, -d);
+            // let postAngle = Math.atan2(inv[0], inv[10])
+            // inv = rotate4(inv, postAngle - preAngle, 0, 0, 1)
+            // console.log(postAngle)
+            viewMatrix = invert4(inv);
+
+            startX = e.clientX;
+            startY = e.clientY;
+        } else if (down == 2) {
+            let inv = invert4(viewMatrix);
+            // inv = rotateY(inv, );
+            // let preY = inv[13];
+            inv = translate4(
+                inv,
+                (-10 * (e.clientX - startX)) / innerWidth,
+                0,
+                (10 * (e.clientY - startY)) / innerHeight,
+            );
+            // inv[13] = preY;
+            viewMatrix = invert4(inv);
+
+            startX = e.clientX;
+            startY = e.clientY;
         }
     });
-    
     canvas.addEventListener("mouseup", (e) => {
         e.preventDefault();
         down = false;
@@ -1104,29 +1116,24 @@ async function main() {
         (e) => {
             e.preventDefault();
             if (e.touches.length === 1 && down) {
-                let invNew = invert4(viewMatrix);
-    
-                // Rotación basada en el movimiento táctil
+                let inv = invert4(viewMatrix);
                 let dx = (4 * (e.touches[0].clientX - startX)) / innerWidth;
                 let dy = (4 * (e.touches[0].clientY - startY)) / innerHeight;
-                invNew = rotate4(invNew, dx, 0, 1, 0);
-                invNew = rotate4(invNew, -dy, 1, 0, 0);
-    
-                console.log("Posición tentativa con touchmove:", invNew[12], invNew[13], invNew[14]);
-    
-                // Validar colisiones antes de aplicar
-                if (!isColliding(invNew)) {
-                    console.log("No hay colisión, aplicando transformación.");
-                    viewMatrix = invert4(invNew);
-                    startX = e.touches[0].clientX;
-                    startY = e.touches[0].clientY;
-                } else {
-                    console.log("Colisión detectada, ignorando transformación.");
-                }
+
+                let d = 4;
+                inv = translate4(inv, 0, 0, d);
+                // inv = translate4(inv,  -x, -y, -z);
+                // inv = translate4(inv,  x, y, z);
+                inv = rotate4(inv, dx, 0, 1, 0);
+                inv = rotate4(inv, -dy, 1, 0, 0);
+                inv = translate4(inv, 0, 0, -d);
+
+                viewMatrix = invert4(inv);
+
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
             } else if (e.touches.length === 2) {
-                let invNew = invert4(viewMatrix);
-    
-                // Escalado y rotación basada en dos toques
+                // alert('beep')
                 const dtheta =
                     Math.atan2(startY - altY, startX - altX) -
                     Math.atan2(
@@ -1149,30 +1156,26 @@ async function main() {
                         e.touches[1].clientY -
                         (startY + altY)) /
                     2;
-    
-                invNew = rotate4(invNew, dtheta, 0, 0, 1);
-                invNew = translate4(invNew, -dx / innerWidth, -dy / innerHeight, 0);
-                invNew = translate4(invNew, 0, 0, 3 * (1 - dscale));
-    
-                console.log("Posición tentativa con touchmove (2 toques):", invNew[12], invNew[13], invNew[14]);
-    
-                // Validar colisiones antes de aplicar
-                if (!isColliding(invNew)) {
-                    console.log("No hay colisión, aplicando transformación.");
-                    viewMatrix = invert4(invNew);
-    
-                    startX = e.touches[0].clientX;
-                    altX = e.touches[1].clientX;
-                    startY = e.touches[0].clientY;
-                    altY = e.touches[1].clientY;
-                } else {
-                    console.log("Colisión detectada, ignorando transformación.");
-                }
+                let inv = invert4(viewMatrix);
+                // inv = translate4(inv,  0, 0, d);
+                inv = rotate4(inv, dtheta, 0, 0, 1);
+
+                inv = translate4(inv, -dx / innerWidth, -dy / innerHeight, 0);
+
+                // let preY = inv[13];
+                inv = translate4(inv, 0, 0, 3 * (1 - dscale));
+                // inv[13] = preY;
+
+                viewMatrix = invert4(inv);
+
+                startX = e.touches[0].clientX;
+                altX = e.touches[1].clientX;
+                startY = e.touches[0].clientY;
+                altY = e.touches[1].clientY;
             }
         },
         { passive: false },
     );
-    
     canvas.addEventListener(
         "touchend",
         (e) => {
@@ -1203,8 +1206,7 @@ async function main() {
 
     let leftGamepadTrigger, rightGamepadTrigger;
 
-    const defaultViewMatrix = [0.9968079985717688, 0.020059363740032442, -0.05358578085264605, 0, -0.015482996652314082, 0.9960136574039044, -0.01780648981502003, 0, 0.049148812733316914, 0.015973191349518117, 1.0023618365466214, -0, -1.8788615323284215, -0.18614580137787629, 1.7578544220251922, 0.9999999999999682];
-
+    const defaultViewMatrix = [0.9631545022819286, 0.019253350532797153, 0.2624170597108447, 0, -0.00439680005836649, 0.9956345206372152, -0.035952322104850665, 0, -0.26854488330512877, 0.031006258125193236, 0.9666034645125869, 0, -1.9526647958102548, -0.17175758282454748, 0.07824891466930294, 0.999999999999965];
     const frame = (now) => {
         let inv = invert4(viewMatrix);
         let invNew = invert4(viewMatrix);
