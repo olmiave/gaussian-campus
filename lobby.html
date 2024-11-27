@@ -25,11 +25,17 @@
         }
 
         h1 {
+            font-size: 2.5rem;
             margin-bottom: 2%;
         }
 
+        h4 {
+            font-size: 1.5rem;
+            line-height: 1.8;
+        }
+
         .panel {
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.7);
             position: fixed;
             left: 0;
             top: 0;
@@ -47,6 +53,8 @@
         }
 
         .skip-button {
+            font-size: 1.15rem !important;
+            margin: 1%;
             display: inline-block;
             padding: 5px 10px;
             position: absolute;
@@ -61,8 +69,18 @@
             border: none;
         }
 
+        .skip-button:hover {
+            color: transparent; /* Hacer el texto transparente */
+            background-image: url('imagenes/fondo_boton.png'); /* Imagen para el efecto de relleno */
+            background-clip: text;
+            -webkit-background-clip: text; /* Para compatibilidad con navegadores Webkit */
+            background-size: cover; /* Ajustar la imagen para que cubra el texto */
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
+        }
+
         .step {
-            display: none; /* Ocultar todos los pasos por defecto */
+            display: none;
             margin-top: 15%;
             text-align: center;
         }
@@ -81,19 +99,19 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: auto; /* Ajuste automático del ancho */
             padding: 1%;
             padding-left: 2.5%;
             padding-right: 2.5%;
             margin: 1%;
-            transition: background 0.3s ease !important; /* Smooth transition */
+            transition: background 0.3s ease !important;
+            font-size: 1rem !important;
         }
         .nb:hover {
             background: url('imagenes/fondo_boton.png');
-            background-size: cover; /* Ensures the image covers the button */
-            color: #f2f2f2; /* Cambia el color del texto en hover */
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover */
-            }
+            background-size: cover;
+            color: #f2f2f2;
+            box-shadow: inset 15px 15px 15px 15px rgba(0, 0, 0, 0.4) !important;
+        }
     </style>
 </head>
 <body>
@@ -101,16 +119,20 @@
         <button id="skipButton" class="skip-button">Saltear</button>
         <div id="onboardingContent">
             <div class="step" id="step1">
-                <h1>Bienvenidos al recorrido de UTDT</h1>
-                <h4>Comenzamos nuestro recorrido virtual para conocer más acerca de la universidad y todo lo que tiene para ofrecer.</h4>
+                <h1>Bienvenidos a 3DiTella</h1>
+                <h4>Nos entusiasma presentarte nuestro Proyecto Final innovadora experiencia interactiva donde la tecnología y la educación se fusionan.</h4>
             </div>
             <div class="step" id="step2">
-                <h1>Bienvenidos al recorrido de UTDT</h1>
-                <h4>Podrás recorrer en 3D espacios interesantes de la universidad y conocer otros espacios mediante presentaciones.</h4>
+                <h1>Explora UTDT en 3D</h1>
+                <h4>Adéntrate en el campus desde cualquier lugar. Recorre nuestro Pasillo Histórico y más.</h4>
             </div>
             <div class="step" id="step3">
-                <h1>Bienvenidos al recorrido de UTDT</h1>
-                <h4>Comienza tu experiencia UTDT!</h4>
+                <h1>Conoce más allá de lo 3D</h1>
+                <h4>Aunque no todos los espacios de la universidad están disponibles en 3D, te invitamos a explorar nuestra presentación de la UTDT para obtener una visión completa de la institución.</h4>
+            </div>
+            <div class="step" id="step4">
+                <h1>Tu experiencia 3DiTella comienza aquí</h1>
+                <h4>Prepárate para un recorrido inmersivo diseñado para conectar y sorprender.</h4>
             </div>
         </div>
         <div class="navigation-buttons">
@@ -125,18 +147,12 @@
         const totalSteps = 3;
 
         function showStep(step) {
-            // Ocultar todos los pasos
             for (let i = 1; i <= totalSteps; i++) {
                 document.getElementById(`step${i}`).style.display = "none";
             }
-            
-            // Mostrar el paso actual
             document.getElementById(`step${step}`).style.display = "block";
 
-            // Controlar visibilidad del botón "Anterior"
             document.getElementById("prevButton").style.display = step === 1 ? "none" : "inline-block";
-
-            // Controlar visibilidad del botón "Te presentamos la UTDT"
             if (step === totalSteps) {
                 document.getElementById("nextButton").innerText = "Echa un vistazo en 3D!";
                 document.getElementById("presentacion").style.display = "inline-block";
@@ -171,9 +187,7 @@
             showStep(currentStep);
         };
 
-        // Inicializar el primer paso
         showStep(currentStep);
-
     </script>
 </body>
 </html>
