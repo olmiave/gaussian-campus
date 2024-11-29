@@ -10,59 +10,20 @@
     <title>3DiTella</title>
 </head>
 <body>
-    <!-- The overlay -->
-    <div id="myNav" class="overlay">
-        <!-- Button to close the overlay navigation -->
-        <a href="javascript:void(0)" class="closebtn btn" onclick="closeNav()">&times;</a>
-        
-        <!-- Overlay content -->
-        <div class="overlay-content">
-            <ol>
-                <li class="titulo">Controles con teclas: </li>
-                    <ul>
-                        <li>Teclas de <span style="font-weight: bold;">flecha izquierda/derecha</span> para moverse de <span style="font-weight: bold;">lado a lado</span></li>
-                        <li>Teclas de <span style="font-weight: bold;">flecha arriba/abajo</span> para moverse hacia <span style="font-weight: bold;">adelante/atrás</span></li>
-                        <li><span class="resaltar">A</span> o <span class="resaltar">D</span> para girar la cámara a la izquierda/derecha</li>
-                        <li><span class="resaltar">W</span> o <span class="resaltar">S</span> para inclinar la cámara hacia arriba/abajo</li>
-                        <li><span class="resaltar">R</span> para reiniciar el recorrido</li>
-                    </ul>
-                
-                <li class="titulo">Trackpad:</li>
-                    <ul>
-                        <li>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</li>
-                        <li>Pellizcar para moverse hacia adelante/atrás</li>
-                        <li><span class="resaltar">Crtl</span><span class="resaltar">+</span>desplazamiento para moverse hacia adelante/atrás</li>
-                        <li><span class="resaltar">Shift</span><span class="resaltar">+</span> desplazamiento para moverse hacia arriba/abajo o moverse de lado a lado</li>
-                    </ul>
-                
-                <li class="titulo">Otros:</li>
-                    <ul>
-                        <li>Pulsar '-' o '+' para alternar las cámaras cargadas</li>
-                    </ul>
-            </ol>
-        </div>
-    </div>
-
-    <!-- Use any element to open/show the overlay navigation menu -->
-     <div class="inst">
-        <span id = "inst" class="btn" onclick="openNav()" style="font-weight: bold; font-size: 1.2em; display: none;">?</span>
-     </div>
-
     <!-- Panel de onboarding -->
     <div id="onboardingPanel" class="onboarding-panel">
         <button class="closebtn" onclick="skipOnboarding()">Saltear</button>
         <div id="onboardingContent">
             <div class="onboarding-step" id="step1">
-                <h2>Bienvenido a la clase SV302</h2>
-                <p>Aquí podras ver de cerca y en 3D al una clase típica ditelliana.</p>
+                <h2>Entrando al Pasillo Histórico</h2>
+                <p>Bienvenido/a al pasillo historico donde encontrarás más acerca de la universidad y elementos antiguos.</p>
             </div>
             <div class="onboarding-step" id="step2">
                 <h2>Navegación</h2>
                 <p>Así podrás desplazarte de un lado a otro, y también hacia adelante y atrás.</p>
                 <p><strong>¡Inténtalo!</strong></p>
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col text-start">
+                        <div>
                             <h4>Teclas:</h4>
                             <svg class="arrow" viewBox="0 0 24 24" style="transform: scale(-1, 1);">
                                 <polygon points="12,2 22,12 12,22 12,17 2,17 2,7 12,7" fill="rgba(0, 0, 0, 0.7)" />
@@ -76,20 +37,7 @@
                             <svg class="arrow" style="transform: rotate(180deg);" viewBox="0 0 24 24">
                                 <polygon points="12,2 2,12 7,12 7,22 17,22 17,12 22,12" fill="rgba(0, 0, 0, 0.7)" />
                             </svg>
-                        </div>
-                        <div class="col text-end">
-                            <h4>Trackpad/mouse:</h4>
-                            <div class="trackpad-instruction">
-                                <img src="imagenes/icono_pellizcar_negro.png" alt="Icono Pellizcar" class="arrow pellizcar">
-                                <p><strong>Pellizca</strong> para mover adelante/atrás.</p>
-                            </div>
-                            <div class="trackpad-instruction">
-                                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="arrow desplazar">
-                                <p><span class="resaltar">Ctrl</span> y <strong>desplaza</strong> para mover izquierda/derecha</p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                        </div>                    
                 </div>
             </div>
             <div class="onboarding-step" id="step3" style="display: none;">
@@ -97,34 +45,20 @@
                 <p>Para explorar otros puntos, aprende a girar la cámara de izquierda a derecha (teclas <strong>A</strong> y <strong>D</strong>) y también arriba y abajo (teclas <strong>W</strong> y <strong>S</strong>).</p>
                 <p>¡Haz la prueba!</p>
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col text-start">
+                        <div>
                             <h4>Teclas:</h4>
-                            <div class="arrow">A</div>
-                            <div class="arrow">D</div>
-                            <div class="arrow">W</div>
-                            <div class="arrow">S</div>
+                            <div class="arrow" style="margin:1%;">W</div>
+                            <div class="arrow" style="margin:1%;">A</div>
+                            <div class="arrow" style="margin:1%;">S</div>
+                            <div class="arrow" style="margin:1%;">D</div>
                         </div>
-                        <div class="col text-end">
-                            <h4>Trackpad/mouse:</h4>
-                            <div class="trackpad-instruction">
-                                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="arrow desplazar">
-                                <p>Desplazar hacia arriba/abajo/izquierda/derecha para orbitar</p>                            
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="onboarding-step" id="step4" style="display: none;">
                 <h2>Comandos extras</h2>
                 <p>Pulsa <span class="resaltar">R</span> para reiniciar el recorrido en cualquier momento.</p>
-                <p>Pulsa <span class="resaltar">P</span> para reanudar la animación predeterminada.</p>
             </div>
             <div class="onboarding-step" id="step5" style="display: none;">
-                <h2>Comienza tu recorrido</h2>
-                <p>Para ver las instrucciones haz clic en el icono <span class="ic">?</span> que se encuentra <strong>arriba a la derecha.</strong></p>
-            </div>
-            <div class="onboarding-step" id="step6" style="display: none;">
                 <h2>Sigue recorriendo</h2>
                 <p>Para recorrer otros espacios haz click en "Continuar", para volver al inicio haz click en "Inicio" que se encontrarán <strong>abajo a la izquierda.</strong></p>
             </div>
@@ -159,24 +93,12 @@
                     </svg>
                 </div>
             </div>
-            <div class="trackpad-instruction">
-                <img src="imagenes/icono_pellizcar_negro.png" alt="Icono Pellizcar" class="a pellizcar">
-                <p>Adelante/atrás.</p>
-            </div>
-            <div class="trackpad-instruction">
-                <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="a desplazar">
-                <p><span class="resaltar">Ctrl</span> e izquierda/derecha.</p>
-            </div>
             <div class="trackpad-tips">
-                <p>Rotación</p>
-                <div class="a">A</div>
-                <div class="a">D</div>
+                <p>Girar</p>
                 <div class="a">W</div>
+                <div class="a">A</div>
                 <div class="a">S</div>
-                <div class="trackpad-instruction">
-                    <img src="imagenes/icono_desplazar_negro.png" alt="Icono Desplazar" class="a desplazar">
-                    <p>Arriba / abajo / izquierda / derecha para orbitar</p>                            
-                </div>
+                <div class="a">D</div>
             </div>
         </div>
     </div>

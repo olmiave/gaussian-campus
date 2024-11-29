@@ -393,7 +393,7 @@ footer{
   position: absolute;
   z-index: 1;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* Efecto de texto con imagen en hover */
@@ -403,7 +403,8 @@ footer{
   background-clip: text;
   -webkit-background-clip: text; /* Para compatibilidad con navegadores Webkit */
   background-size: cover; /* Ajustar la imagen para que cubra el texto */
-  border: 1px solid black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.25);
   border-radius: 2px;
 }
 
@@ -463,23 +464,16 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
   align-items: center; /* Cambia de baseline a center */
 }
 
-.row {
-  display: flex; /* Asegura que las columnas estén en la misma línea */
-  justify-content: space-between; /* Espaciado entre las columnas */
-}
 
-.col {
-  width: 50%;
-  white-space: nowrap;
-}
 
 .arrow {
-  width: 40px !important; /* Ancho fijo para que sea un cuadrado */
-  height: 40px !important; /* Alto fijo para que sea un cuadrado */
+  width: 50px !important; /* Ancho fijo para que sea un cuadrado */
+  height: 50px !important; /* Alto fijo para que sea un cuadrado */
   margin: 3%;
   margin-top: 1%;
   color: #f1f1f1;
   font-weight: bold;
+  font-size: large;
   border: 2px solid #717171;
   display: inline-flex; /* Cambiado a inline-flex para centrar el contenido */
   justify-content: center; /* Centra el contenido horizontalmente */
@@ -566,7 +560,7 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
   position: absolute;
   top: 5px;
   right: 5px;
-  font-size: 12px !important;
+  font-size: 16px !important;
 }
 
 /* Contenido del panel de tips */
@@ -609,8 +603,8 @@ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7); /* Stronger inner shadow on hover
 }
 
 .a {
-  width: 23px; /* Ancho fijo para que sea un cuadrado */
-  height: 25px; /* Alto fijo para que sea un cuadrado */
+  width: 35px; /* Ancho fijo para que sea un cuadrado */
+  height: 35px; /* Alto fijo para que sea un cuadrado */
   margin: 3%;
   margin-top: 1%;
   color: #f1f1f1;
