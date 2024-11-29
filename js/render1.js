@@ -1299,7 +1299,7 @@ async function main() {
         //     if(gamepad.buttons[3].pressed){
         //         carousel = true;
         //     }
-        // }
+        }
 
         viewMatrix = invert4(inv);
 
@@ -1311,7 +1311,7 @@ async function main() {
         //     inv = rotate4(inv, -0.6 * t, 0, 1, 0);
 
         //     viewMatrix = invert4(inv);
-        }
+        // }
 
         let inv2 = invert4(viewMatrix);
         inv2 = translate4(inv2, 0, -jumpDelta, 0);
